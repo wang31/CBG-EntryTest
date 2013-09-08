@@ -25,10 +25,10 @@
 							 CURLOPT_URL => $url,
 							 CURLOPT_RETURNTRANSFER => true
 							 );
-			/*$options[CURLOPT_URL] .= '?client_id=';
-			$options[CURLOPT_URL] .= this->$clientID;
+			$options[CURLOPT_URL] .= '?client_id=';
+			$options[CURLOPT_URL] .= $this->clientID;
 			$options[CURLOPT_URL] .= '&';
-			$options[CURLOPT_URL] .= this->$getfield;*/
+			$options[CURLOPT_URL] .= $this->getfield;
 			$feed = curl_init();
 			curl_setopt_array($feed, $options);
 			$json = curl_exec($feed);
