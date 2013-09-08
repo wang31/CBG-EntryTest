@@ -31,26 +31,26 @@
 			$utc_offset = $tweet['user']['utc_offset'];
 			$tweet_time = strtotime($tweet['created_at']) + $utc_offset;
 			
-			if (false){
+			if (true){
 				// Convert tweet timestamp into Twitter style date ("About 2 hours ago")
 				$current_time = time();
 				$time_diff = abs($current_time - $tweet_time);
 				switch ($time_diff) {
 					case ($time_diff < 60):
-						$display_time = $time_diff . ' ' . $this->options['twitter_date_text'][0] . ' ' . $this->options['twitter_date_text'][4];
+						$display_time = $time_diff . ' ' . 'seconds' . ' ' . 'ago';
 						break;
 					case ($time_diff >= 60 && $time_diff < 3600):
 						$min = floor($time_diff/60);
-						$display_time = $min . ' ' . $this->options['twitter_date_text'][1] . ' ' . $this->options['twitter_date_text'][4];
+						$display_time = $min . ' ' . 'minutes' . ' ' . 'ago';
 						break;
 					case ($time_diff >= 3600 && $time_diff < 86400):
 						$hour = floor($time_diff/3600);
-						$display_time = $this->options['twitter_date_text'][2] . ' ' . $hour . ' ' . $this->options['twitter_date_text'][3];
+						$display_time = 'about' . ' ' . $hour . ' ' . 'hour';
 						if ($hour > 1){ $display_time .= 's'; }
-						$display_time .= ' ' . $this->options['twitter_date_text'][4];
+						$display_time .= ' ' . 'ago';
 						break;
 					default:
-						$format = str_replace('%O', date('S', $tweet_time), $this->options['date_format']);
+						$format = str_replace('%O', date('S', $tweet_time), '%I:%M %p %b %d%O');
 						$display_time = strftime($format, $tweet_time);
 						break;
 				}
@@ -60,7 +60,14 @@
 			}
 			
 			$href = 'http://twitter.com/' . $tweet['user']['screen_name'] . '/status/' . $tweet['id_str'];
-			return '<li>'.'<span class="profilephoto"><img name='.'"'.$tweet['user'].'photo'.'" src="'.$tweet['user']['profile_image_url'].'" width="60" height="60"/></span>'.'<span class="status">' .'&nbsp;&nbsp;&nbsp;&nbsp;'.$tweet_text . '</span><span class="meta"> ' .'&nbsp;&nbsp;&nbsp;&nbsp;'. '<a href="' . $href . '">' . $display_time . '</a>' . '</span>' . '</li>';
+			$profilePage = 'http://twitter.com/' . $tweet['user']['screen_name'];
+			//the profile photo
+			$returnV = '<li>'.'<span class="profilephoto"><a href="'.$profilePage.'">'.'<img name='.'"'.$tweet['user'].'photo'.'" src="'.$tweet['user']['profile_image_url'].'" width="70" height="70"/></a></span>';
+			//the username
+			$returnV .= '<span class="username" style="font-size:21px">'.'<a href="'.$profilePage.'">'.'@'.$tweet['user']['screen_name'].'</a>'.'</span>';
+			//the content and time
+			$returnV .= '<span class="status" style="font-size:25px">' .'&nbsp;&nbsp;&nbsp;&nbsp;'.$tweet_text . '</span><span class="meta" style="font-size:21px"> ' .'&nbsp;&nbsp;&nbsp;&nbsp;'. '<a href="' . $href . '">' . $display_time . '</a>' . '</span>' . '</li>';
+			return $returnV;
 		}
 		
 		//parse a list of tweets
