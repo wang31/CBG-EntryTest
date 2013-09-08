@@ -6,5 +6,17 @@
 	$url = 'https://api.instagram.com/v1/media/search';
 	
 	$instagram = new SimpleInstagramAPIExchange($clientID);
-	echo $instagram->setGetField($getfield)->performRequest($url, true);
+	$json = $instagram->setGetField($getfield)->performRequest($url, true);
+	$data = json_decode($json, true);
+	//var_dump($data);
+	if($data['meta']['code'] != 200){
+		echo $data['meta']['error_message'];
+	}
+	else{
+		foreach($data['data'] as $single){
+			$html = '<div class="pic" style="height:80%;width:100%"><img name="link" src="'.$single['images']['low_resolution']['url'].'"/></div>';
+			echo $html;
+		}
+		
+	}
 ?>
