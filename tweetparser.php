@@ -60,19 +60,19 @@
 			}
 			
 			$href = 'http://twitter.com/' . $tweet['user']['screen_name'] . '/status/' . $tweet['id_str'];
-			return '<li><span class="status">' . $tweet_text . '</span><span class="meta"> ' . '<a href="' . $href . '">' . $display_time . '</a>' . '</span>' . '</li>';
+			return '<li>'.'<span class="profilephoto"><img name='.'"'.$tweet['user'].'photo'.'" src="'.$tweet['user']['profile_image_url'].'" width="60" height="60"/></span>'.'<span class="status">' .'&nbsp;&nbsp;&nbsp;&nbsp;'.$tweet_text . '</span><span class="meta"> ' .'&nbsp;&nbsp;&nbsp;&nbsp;'. '<a href="' . $href . '">' . $display_time . '</a>' . '</span>' . '</li>';
 		}
 		
 		//parse a list of tweets
 		public function parse_json($tweet){
 			$data = json_decode($tweet, true);
-			var_dump($data);
-			/*$html = '<ul id="twitter">';
+			//var_dump($data);
+			$html = '<ul id="twitter">';
 			foreach($data["statuses"] as $tweet){
 				$html .= $this->parse_tweet($tweet);
 			}
 			$html .= '</ul>';
-			echo $html;*/
+			echo $html;
 		}
 	}
 ?>

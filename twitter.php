@@ -8,7 +8,7 @@
 	);
 	
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
-	$getfield = '?q=%23usc&geocode=34.0619035713531,-118.3024549484253,20mi&count=1';
+	$getfield = '?q=%23usc&geocode=34.0619035713531,-118.3024549484253,20mi&count=20';
 	$requestMethod = 'GET';
 	
 	$twitter = new TwitterAPIExchange($settings);
