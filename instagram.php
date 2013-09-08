@@ -14,7 +14,8 @@
 	}
 	else{
 		foreach($data['data'] as $single){
-			$html = '<div class="pic" style="height:80%;width:100%"><img name="link" src="'.$single['images']['low_resolution']['url'].'"/></div>';
+			$html = '<a href="'.$single['link'].'">'.'<img name="link" src="'.$single['images']['low_resolution']['url'].'" height="35%" width="50%"/></a>';
+			
 			echo $html;
 		}
 		
