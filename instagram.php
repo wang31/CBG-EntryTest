@@ -19,8 +19,10 @@
 				
 				echo $html;
 			}
-			
 		}
 	}
-	else echo 'You cannot visit this page before selecting a location. Go to the google map page first.';
+	else{
+		echo 'You cannot visit this page before selecting a location. Go to the google map page first.';
+	}
+	echo '<form method="link" action="map.html"><input type="submit" value="Go back to map"></form>';
 ?>
