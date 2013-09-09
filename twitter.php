@@ -23,5 +23,5 @@
 	else{
 		echo 'You cannot visit this page before selecting a location. Go to the google map page first.';
 	}
-	echo '<form method="link" action="map.html"><input type="submit" value="Go back to map"></form>';
+	echo '<form method="link" action="map.html"><input type="submit" value="Go back to map" style="height:150px; width:250px; margin-left:auto;margin-right:auto"></form>';
 ?>
