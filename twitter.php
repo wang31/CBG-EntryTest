@@ -9,7 +9,8 @@
 	
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	if(isset($_GET['lat'])&&isset($_GET['lng'])){
-		$getfield = '?q=%23usc&geocode='.$_GET['lat'].','.$_GET['lng'].',10mi&count=40';
+		//$getfield = '?q=%23usc&geocode='.$_GET['lat'].','.$_GET['lng'].',10mi&count=40';
+		$getfield = '?geocode='.$_GET['lat'].','.$_GET['lng'].',10mi&count=40';
 		$requestMethod = 'GET';
 		
 		$twitter = new TwitterAPIExchange($settings);
