@@ -29,10 +29,12 @@
 													});
 				
 				google.maps.event.addListener(marker, 'click', function(){
-											  alert("ccccc");
-											  //var v = confirm("")
+											  window.location.replace("twitter.php?lat="+latlng.lat()+"&lng="+latlng.lng());
 				});
-				infoWindow.setContent("<b>Coordinates</b><br>"+latlng);
+				google.maps.event.addListener(marker, 'dblclick', function(){
+											  window.location.replace("instagram.php?lat="+latlng.lat()+"&lng="+latlng.lng());
+											  });
+				infoWindow.setContent("<b>Geolocation</b><br>"+latlng+"<br>Click to see nearby tweets, Double-Click for nearby Instagram photos");
 				infoWindow.open(map, marker);
 				return marker;
 			}

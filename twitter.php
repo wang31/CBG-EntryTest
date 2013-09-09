@@ -8,16 +8,18 @@
 	);
 	
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
-	$getfield = '?q=%23usc&geocode=34.0619035713531,-118.3024549484253,20mi&count=20';
-	$requestMethod = 'GET';
-	
-	$twitter = new TwitterAPIExchange($settings);
-	$data = $twitter->setGetfield($getfield)
-	->buildOauth($url, $requestMethod)
-	->performRequest(true);
-	require_once('tweetparser.php');
-	$parser = new TweetParser();
-	$parser->parse_json($data);
-	//echo $twitter
+	if(isset($_GET['lat'])&&isset($_GET['lng'])){
+		$getfield = '?q=%23usc&geocode='.$_GET['lat'].','.$_GET['lng'].',10mi&count=40';
+		$requestMethod = 'GET';
+		
+		$twitter = new TwitterAPIExchange($settings);
+		$data = $twitter->setGetfield($getfield)
+		->buildOauth($url, $requestMethod)
+		->performRequest(true);
+		require_once('tweetparser.php');
+		$parser = new TweetParser();
+		$parser->parse_json($data);
+	}
+	else echo 'You cannot visit this page before selecting a location. Go to the google map page first.';
 	
 ?>

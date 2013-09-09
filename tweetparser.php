@@ -62,11 +62,11 @@
 			$href = 'http://twitter.com/' . $tweet['user']['screen_name'] . '/status/' . $tweet['id_str'];
 			$profilePage = 'http://twitter.com/' . $tweet['user']['screen_name'];
 			//the profile photo
-			$returnV = '<li>'.'<span class="profilephoto"><a href="'.$profilePage.'">'.'<img name='.'"'.$tweet['user'].'photo'.'" src="'.$tweet['user']['profile_image_url'].'" width="70" height="70"/></a></span>';
+			$returnV = '<div name="cell" style="margin-bottom:40px"><li>'.'<span class="profilephoto"><a href="'.$profilePage.'">'.'<img name='.'"'.$tweet['user'].'photo'.'" src="'.$tweet['user']['profile_image_url'].'" width="120" height="120"/></a></span>';
 			//the username
-			$returnV .= '<span class="username" style="font-size:21px">'.'<a href="'.$profilePage.'">'.'@'.$tweet['user']['screen_name'].'</a>'.'</span>';
+			$returnV .= '<span class="username" style="font-size:25px">'.'<a href="'.$profilePage.'">'.'@'.$tweet['user']['screen_name'].'</a>'.'</span>';
 			//the content and time
-			$returnV .= '<span class="status" style="font-size:25px">' .'&nbsp;&nbsp;&nbsp;&nbsp;'.$tweet_text . '</span><span class="meta" style="font-size:21px"> ' .'&nbsp;&nbsp;&nbsp;&nbsp;'. '<a href="' . $href . '">' . $display_time . '</a>' . '</span>' . '</li>';
+			$returnV .= '<br><br><br><span class="status" style="font-size:30px">' .'&nbsp;&nbsp;&nbsp;&nbsp;'.$tweet_text . '</span><span class="meta" style="font-size:25px"> ' .'&nbsp;&nbsp;&nbsp;&nbsp;'. '<a href="' . $href . '">' . $display_time . '</a>' . '</span>' . '</li></div>';
 			return $returnV;
 		}
 		
@@ -77,6 +77,7 @@
 			$html = '<ul id="twitter">';
 			foreach($data["statuses"] as $tweet){
 				$html .= $this->parse_tweet($tweet);
+				$html .= '<hr size="3">';
 			}
 			$html .= '</ul>';
 			echo $html;
